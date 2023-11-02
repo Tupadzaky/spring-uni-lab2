@@ -1,12 +1,10 @@
 package lab2.service;
 
-import java.util.List;
-
-import lab2.model.Grade;
 import lab2.model.Lesson;
 import lab2.repository.LessonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LessonService implements AbstractService<Lesson> {
