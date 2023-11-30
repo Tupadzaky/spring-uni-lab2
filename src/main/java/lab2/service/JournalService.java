@@ -2,19 +2,21 @@ package lab2.service;
 
 import lab2.model.Journal;
 import lab2.repository.JournalRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class JournalService implements AbstractService<Journal> {
 
-    private JournalRepository journalRepository;
+    private final JournalRepository journalRepository;
 
     @Override
     public Journal save(Journal journal) {
-        return journalRepository.save(journal);
+        return journalRepository.saveAndFlush(journal);
     }
 
     @Override
@@ -28,8 +30,13 @@ public class JournalService implements AbstractService<Journal> {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    @Autowired
-    public void setJournalRepository(JournalRepository journalRepository) {
-        this.journalRepository = journalRepository;
+    @Override
+    public Journal update(Journal entity) {
+        return journalRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        journalRepository.deleteById(id);
     }
 }

@@ -6,14 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @Accessors(chain = true)
-@Entity(name = "journal")
+@Entity(name = "journals")
 public class Journal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,21 +2,19 @@ package lab2.service;
 
 import lab2.model.Lesson;
 import lab2.repository.LessonRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LessonService implements AbstractService<Lesson> {
     private final LessonRepository lessonRepository;
 
-    public LessonService(LessonRepository lessonRepository) {
-        this.lessonRepository = lessonRepository;
-    }
-
     @Override
     public Lesson save(Lesson lesson) {
-        return lessonRepository.save(lesson);
+        return lessonRepository.saveAndFlush(lesson);
     }
 
     @Override
@@ -28,5 +26,15 @@ public class LessonService implements AbstractService<Lesson> {
     public Lesson findById(Long id) {
         return lessonRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public Lesson update(Lesson entity) {
+        return lessonRepository.saveAndFlush(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        lessonRepository.deleteById(id);
     }
 }

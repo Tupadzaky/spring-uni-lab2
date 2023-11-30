@@ -8,4 +8,8 @@ public interface AbstractService<T> {
     List<T> findAll();
 
     T findById(Long id);
+
+    T update(T entity);
+
+    void deleteById(Long id);
 }
