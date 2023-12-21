@@ -1,7 +1,6 @@
 package lab2.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 import lab2.dto.request.LessonRequestDto;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/lesson")
+@RequestMapping("/lessons")
 public class LessonController {
     private final AbstractService<Lesson> lessonService;
     private final LessonMapper lessonMapper;

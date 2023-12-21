@@ -1,12 +1,9 @@
 package lab2.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import lab2.dto.request.GradeRequestDto;
 import lab2.dto.request.JournalRequestDto;
-import lab2.dto.response.GradeResponseDto;
 import lab2.dto.response.JournalResponseDto;
 import lab2.mapper.JournalMapper;
-import lab2.model.Grade;
 import lab2.model.Journal;
 import lab2.service.AbstractService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/journal")
+@RequestMapping("/journals")
 @RequiredArgsConstructor
 public class JournalController {
     private final AbstractService<Journal> journalService;

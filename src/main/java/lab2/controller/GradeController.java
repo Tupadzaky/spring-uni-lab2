@@ -4,13 +4,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import java.util.stream.Collectors;
 import lab2.dto.request.GradeRequestDto;
-import lab2.dto.request.LessonRequestDto;
 import lab2.dto.response.GradeResponseDto;
-import lab2.dto.response.LessonResponseDto;
 import lab2.mapper.GradeMapper;
 import lab2.model.Grade;
-import lab2.model.Lesson;
-import lab2.service.AbstractService;
+import lab2.service.GradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,19 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/grade")
+@RequestMapping("/grades")
 public class GradeController {
-    private final AbstractService<Grade> gradeService;
+    private final GradeService gradeService;
     private final GradeMapper gradeMapper;
 
-    @Operation(summary = "Get all grades", description = "List of all grades")
+    @Operation(summary = "Get all grades with filter/pagination",
+            description = "List of all grades with filter/pagination")
     @GetMapping
-    public List<GradeResponseDto> findAll() {
-        return gradeService.findAll().stream()
+    public List<GradeResponseDto> findAll(@RequestParam(required = false) String mark,
+                                          @RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "3") int size) {
+
+        return gradeService.findByMarkContaining(mark, page, size).stream()
                 .map(gradeMapper::gradeToGradeDto)
                 .collect(Collectors.toList());
     }
