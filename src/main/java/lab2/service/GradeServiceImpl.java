@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public class GradeServiceImpl implements GradeService {
     private final GradeRepository gradeRepository;
 
     @Override
+    @Transactional
     public Grade save(Grade grade) {
         return gradeRepository.saveAndFlush(grade);
     }
