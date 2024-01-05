@@ -9,6 +9,7 @@ import lab2.mapper.GradeMapper;
 import lab2.model.Grade;
 import lab2.service.GradeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,6 @@ public class GradeController {
     @Operation(summary = "Get all grades with filter/pagination",
             description = "List of all grades with filter/pagination")
     @GetMapping
-    @ResponseStatus
     public List<GradeResponseDto> findAll(@RequestParam(required = false) String mark,
                                           @RequestParam(defaultValue = "0") int page,
                                           @RequestParam(defaultValue = "3") int size) {
@@ -48,12 +48,14 @@ public class GradeController {
 
     @Operation(summary = "Create grade", description = "Create grade")
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public GradeResponseDto save(@RequestBody GradeRequestDto requestDto) {
         return gradeMapper.gradeToGradeDto(gradeService.save(gradeMapper.gradeRequestDtoToGrade(requestDto)));
     }
 
     @Operation(summary = "Update grade by id", description = "Update grade by id")
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public GradeResponseDto update(@PathVariable Long id, @RequestBody GradeRequestDto requestDto) {
         Grade grade = gradeMapper.gradeRequestDtoToGrade(requestDto);
         grade.setId(id);
