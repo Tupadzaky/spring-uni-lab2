@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class GradeController {
     @Operation(summary = "Get all grades with filter/pagination",
             description = "List of all grades with filter/pagination")
     @GetMapping
+    @ResponseStatus
     public List<GradeResponseDto> findAll(@RequestParam(required = false) String mark,
                                           @RequestParam(defaultValue = "0") int page,
                                           @RequestParam(defaultValue = "3") int size) {

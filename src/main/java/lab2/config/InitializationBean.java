@@ -19,11 +19,11 @@ public class InitializationBean {
 
     @PostConstruct
     public void init() {
-        Grade grade = new Grade().setMark(5);
-        gradeService.save(grade);
-        Lesson lesson = new Lesson().setName("Jaba").setGrade(grade);
-        lessonService.save(lesson);
-        Journal journal = new Journal().setStudentName("Student").setLessons(List.of(lesson));
-        journalService.save(journal);
+//        Grade grade = new Grade().setMark(5);
+//        gradeService.save(grade);
+//        Lesson lesson = new Lesson().setName("Jaba").setGrade(grade);
+//        lessonService.save(lesson);
+//        Journal journal = new Journal().setStudentName("Student").setLessons(List.of(lesson));
+//        journalService.save(journal);
     }
 }
